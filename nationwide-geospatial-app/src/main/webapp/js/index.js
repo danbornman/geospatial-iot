@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	
 	// base url for all rest calls
-	var rootURL = "http://cloudant-rest-example.mybluemix.net/webapi";
+	//var rootURL = "http://nationwide-geospatial-app.mybluemix.net/webapi";
 	
 	jQuery(function () {
         $('#tabs a:first').tab('show');
@@ -135,11 +135,17 @@ $(document).ready(function(){
 	userName: use-auth-token
 	password: T2mDbnQ+cOT&WLi3px
 	
+	// my account
 	API Key: 	a-hl3q6t-csof6mpfy7
 	Auth Token:	X0bAwfQXcTD5CzVxBc
+	
+	// nationwide account
+	API Key: 	a-efaqo1-4ml4vkwnpn
+	Auth Token:	3becQNzI3jApFGfu1G
 */	
 	// create a mqtt client object. using the paho client library.
-	var client = new Messaging.Client("hl3q6t.messaging.internetofthings.ibmcloud.com",8883,"a:hl3q6t:autoSim1");
+	//var client = new Messaging.Client("efaqo1.messaging.internetofthings.ibmcloud.com",8883,"a:efaqo1:autoSim1");
+	var client = new Messaging.Client(hostOptions.host,8883,hostOptions.deviceID);
 	
 	client.onConnectionLost = function (responseObject) {
 	    //alert("connection lost: " + responseObject.errorMessage);
@@ -171,8 +177,10 @@ $(document).ready(function(){
 	// options passed to the call to connect (used in button click event)
 	var options = {
 	    timeout: 30,
-	    userName: "a-hl3q6t-csof6mpfy7",
-	    password: "X0bAwfQXcTD5CzVxBc",
+	    //userName: "a-efaqo1-4ml4vkwnpn",
+	    //password: "3becQNzI3jApFGfu1G",
+	    userName: iotOptions.iotKey,
+	    password: iotOptions.authToken,
 	    useSSL: true,
 	    keepAliveInterval: 120,
 	    onSuccess: function () {

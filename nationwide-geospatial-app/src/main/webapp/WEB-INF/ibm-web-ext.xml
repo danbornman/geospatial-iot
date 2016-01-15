@@ -6,7 +6,8 @@
 	version="1.0">
 
 	<reload-interval value="3"/>
-	<context-root uri="nationwide-geospatial-app" />
+	<!-- <context-root uri="nationwide-geospatial-app" /> -->
+	<context-root uri="/" />
 	<enable-directory-browsing value="false"/>
 	<enable-file-serving value="true"/>
 	<enable-reloading value="true"/>

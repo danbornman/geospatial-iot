@@ -13,16 +13,20 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import com.nationwide.listener.PropertiesListener;
+
 public class CloudantConnectionMngr {
 
 	private static CloudantClient cloudant = null;
     private static Database db = null;
 
-    private static String databaseName = "smartride";
-
     private static String url = null;
     private static String user = null;
     private static String password = null;
+    
+    //public static Map<String,String> applicationProperties = new HashMap<String,String>();
+    static String dbName = PropertiesListener.applicationProperties.get("cloudantDatabaseName");
+    private static String databaseName = dbName;
 	
     // initialize connection to cloudant service initClient() --> creatClient()
     private static void initClient() {
@@ -40,25 +44,7 @@ public class CloudantConnectionMngr {
     // default constructor
     public CloudantConnectionMngr() {}
     
-/*
- * VCAP_SERVICES data
- *     {
-    	  "cloudantNoSQLDB": [
-    	    {
-    	      "name": "Cloudant NoSQL DB-f1",
-    	      "label": "cloudantNoSQLDB",
-    	      "plan": "Shared",
-    	      "credentials": {
-    	        "username": "dc833ee4-c842-4a2d-aae4-82a741c7267d-bluemix",
-    	        "password": "b1674f9cad3e05aceb1df2909896975ab838dcfab586c49e69960fa80076bfe2",
-    	        "host": "dc833ee4-c842-4a2d-aae4-82a741c7267d-bluemix.cloudant.com",
-    	        "port": 443,
-    	        "url": "https://dc833ee4-c842-4a2d-aae4-82a741c7267d-bluemix:b1674f9cad3e05aceb1df2909896975ab838dcfab586c49e69960fa80076bfe2@dc833ee4-c842-4a2d-aae4-82a741c7267d-bluemix.cloudant.com"
-    	      }
-    	    }
-    	  ]
-    	}
-*/    
+   
     // use VCAP_SERVICES variables to connect to cloudant service
     private static CloudantClient createClient() {
         String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
