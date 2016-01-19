@@ -2,7 +2,7 @@
  * Application configuration properties
  */
 
-var rootURL = "http://nationwide-geospatial-app.mybluemix.net/webapi";
+var rootURL = "http://nationwide-geospatial-demo.mybluemix.net/webapi";
 
 var iotOptions = {
 		orgID : 'efaqo1',
